@@ -76,19 +76,32 @@ FEATURE_COLS: Final[list[str]] = [
     "body_mass_g",
 ]
 
+MODEL: RandomForestClassifier | None = None
+
+
 # === Section 4. LOAD THE MODEL ===
 
-LOG.info(f"Loading model from: {MODEL_PATH}")
 
-if not MODEL_PATH.exists():
-    LOG.error(f"Model file not found: {MODEL_PATH}")
-    raise FileNotFoundError(
-        f"Model not found at {MODEL_PATH}. "
-        "Run the training notebook or app_case.py first."
-    )
+def load_model() -> RandomForestClassifier:
+    """Load the persisted model lazily when first needed."""
+    global MODEL
 
-MODEL = joblib.load(MODEL_PATH)
-LOG.info("Model loaded successfully")
+    if MODEL is not None:
+        return MODEL
+
+    LOG.info(f"Loading model from: {MODEL_PATH}")
+
+    if not MODEL_PATH.exists():
+        LOG.error(f"Model file not found: {MODEL_PATH}")
+        raise FileNotFoundError(
+            f"Model not found at {MODEL_PATH}. "
+            "Run the training notebook or app_case.py first."
+        )
+
+    MODEL = joblib.load(MODEL_PATH)
+    LOG.info("Model loaded successfully")
+    return MODEL
+
 
 # === Section 5. CREATE THE APP ===
 
@@ -115,6 +128,7 @@ def predict_from_features(
 @app.post("/predict")
 def predict(payload: dict[str, Any]) -> dict[str, Any]:
     try:
-        return predict_from_features(MODEL, payload)
+        model = load_model()
+        return predict_from_features(model, payload)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
