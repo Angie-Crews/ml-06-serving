@@ -30,19 +30,23 @@ to get the example projects running on your machine.
 
 ## Phase 4. Technical Modification
 
-Describe your small technical modification to the example project.
+This project's Phase 4 modification was a small API enhancement:
 
-Include:
+- Added a GET `/health` endpoint to [src/mlstudio/serve_crews.py](src/mlstudio/serve_crews.py).
+- Preserved existing POST `/predict` behavior.
+- Added tests in [tests/test_serve_crews.py](tests/test_serve_crews.py).
+- Added verification cells in [notebooks/ml_06_serve_model_crews.ipynb](notebooks/ml_06_serve_model_crews.ipynb).
 
-- What you changed
-- Why you chose that change
-- How you verified that it worked
-- What result, output, chart, metric, or behavior confirmed the change
+Why this change was chosen:
 
-Compared with the example project,
-explain what is different and why the change matters.
+- It is a safe, targeted change to a working service.
+- It adds observable behavior that is easy to validate and document.
 
-Was it easy, or surprisingly challenging and why do you think so?
+How it was verified:
+
+- Start server: `uv run fastapi dev src/mlstudio/serve_crews.py`
+- Confirm `GET /health` returns status JSON.
+- Confirm `POST /predict` still returns a valid prediction.
 
 ## Phase 5. Custom Project
 

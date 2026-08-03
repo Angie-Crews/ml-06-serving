@@ -89,6 +89,21 @@ to complete:
 4. Phase 4. **Modify**
 5. Phase 5. **Apply**
 
+## Phase 4 Technical Modification
+
+For Phase 4, I made a small and safe serving change in the crews version of the app:
+
+- Added a new GET `/health` endpoint in [src/mlstudio/serve_crews.py](src/mlstudio/serve_crews.py).
+- Kept existing POST `/predict` behavior unchanged.
+- Added coverage in [tests/test_serve_crews.py](tests/test_serve_crews.py).
+- Added notebook verification cells in [notebooks/ml_06_serve_model_crews.ipynb](notebooks/ml_06_serve_model_crews.ipynb) to call `/health` and `/predict`.
+
+Verification used:
+
+- `uv run fastapi dev src/mlstudio/serve_crews.py`
+- A successful `GET /health` response (status and model availability)
+- A successful `POST /predict` response (species prediction)
+
 ## Challenges
 
 Challenges are expected.
