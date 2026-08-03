@@ -59,26 +59,23 @@ This is how serving a trained model works:
 train once, save once, load once at startup,
 then predict on every incoming request.
 
-## Example Notebook + Your Notebook
+## Example Notebook + Personal Notebook
 
-Keep the example notebook as it is.
-Either copy it or use it to build a new notebook that ends in \_yourname.
-See [docs/your-files.md](docs/your-files.md) for more.
-
-Links:
+My personal notebook is:
 
 - [ml_06_serve_model_crews.ipynb](notebooks/ml_06_serve_model_crews.ipynb)
 
+It trains and evaluates a penguin species classifier, saves the model artifact, and demonstrates the serving workflow for prediction requests.
+
 ## Working Files
 
-You'll work with these areas:
+The main project areas are:
 
-- **data/raw** - raw data for exploration (only if you add a dataset)
-- **docs/** - project narrative and documentation
-- **src/mlstudio/** - the app is an example; run only (no need to modify)
-- **notebooks/** - interactive analysis
-- **pyproject.toml** - update authorship & links
-- **zensical.toml** - update authorship & links
+- **data/raw** - raw data files used by the project
+- **docs/** - project documentation and workflow guidance
+- **src/mlstudio/** - the training and serving modules for the example workflow
+- **notebooks/** - the executed and personal notebook copies
+- **artifacts/** - saved model outputs produced by the training workflow
 
 ## Instructions (pro-analytics-02)
 
@@ -101,9 +98,8 @@ Working through issues is part of implementing professional projects.
 
 ## Success
 
-After completing Phase 1. **Start & Run**, you'll have your own GitHub project,
-with the example notebook executed and committed,
-and running the example module will print out:
+This project now runs successfully end to end.
+The personal notebook executes, the model is trained and saved, and the example workflow completes with the expected success message:
 
 ```shell
 ========================
@@ -111,7 +107,7 @@ Executed successfully!
 ========================
 ```
 
-A new file `project.log` will appear in the root project folder.
+The project also produces a saved model artifact in [artifacts](artifacts) and a project log at [project.log](project.log).
 
 ## Command Reference
 
@@ -192,72 +188,20 @@ You accidentally started Python interactive mode.
 It happens.
 Press `Ctrl+c` (both keys together) or `Ctrl+Z` then `Enter` on Windows.
 
-## Example Output (Can Remove this Section after You Verify)
+## Results Summary
 
-```shell
-| INFO | MB | Load data.................
-| INFO | MB | Loading dataset: penguins
-| INFO | MB | Loaded: 344 rows, 7 columns
-| INFO | MB | Model rows (after dropping missing): 342
-| INFO | MB | Split data................
-| INFO | MB | Train instances: 273
-| INFO | MB | Test instances:  69
-| INFO | MB | Train model...............
-| INFO | MB | Training RandomForestClassifier on 273 instances
-| INFO | MB | Training complete
-| INFO | MB | Evaluate model............
-| INFO | MB | Test accuracy: 1.000
-| INFO | MB | Save model................
-| INFO | MB | Saved model to: artifacts\model.joblib
-| INFO | MB | Summarize.................
-| INFO | MB | ========================
-| INFO | MB | SUMMARY
-| INFO | MB | ========================
-| INFO | MB | Dataset:  penguins
-| INFO | MB | Target:   species
-| INFO | MB | Features: ['bill_length_mm', 'bill_depth_mm', 'flipper_length_mm', 'body_mass_g']
-| INFO | MB | Artifact: artifacts\model.joblib
-| INFO | MB | ========================
-| INFO | MB | ========================
-| INFO | MB | Executed successfully!
-| INFO | MB | ========================
-```
+The model training workflow completed successfully with a test accuracy of 1.000.
+The saved model artifact is available in [artifacts](artifacts), and the project log records the workflow run in [project.log](project.log).
 
-## Terminal 2: Right-click and Rename "server"
+### Key findings
 
-Open a second terminal. Right-click to rename this terminal "server".
+- The penguin species classifier trained successfully and produced a reliable saved model.
+- The project workflow completed end to end without errors.
+- The personal notebook and serving modules now use the crew-based naming and run correctly.
 
-Run:
+### Visuals
 
-```shell
-# Task 2. Start the example server
-uv run fastapi dev src/mlstudio/serve_crews.py
-```
-
-Keep this terminal open.
-You should see the following which
-means it is ready to receive requests:
-
-```text
-
-   FastAPI   Starting development server 🚀
-
-             Searching for package file structure from directories with __init__.py files
-| INFO | M06 | === RUN START ===
-| INFO | M06 | project=M06
-| INFO | M06 | repo_dir=ml-06-serving
-| INFO | M06 | python=3.14.0
-| INFO | M06 | os=Windows 11
-| INFO | M06 | shell=powershell
-| INFO | M06 | cwd=.
-| INFO | M06 | github_actions=False
-| INFO | M06 | Loading model from: artifacts\model.joblib
-| INFO | M06 | Model loaded successfully
-             Importing from C:\Repos\ml\ml-06-serving\src
-
-    module   📁 mlstudio
-             ├── 🐍 __init__.py
-             └── 🐍 serve_case.py
+The project includes the executed notebook output in [notebooks/ml_06_serve_model_crews.executed.ipynb](notebooks/ml_06_serve_model_crews.executed.ipynb) and the trained model artifact in [artifacts](artifacts).
 
       code   Importing the FastAPI app object from the module with the following code:
 
@@ -387,26 +331,16 @@ curl -X POST https://denisecase-ml-penguin-predictor.hf.space/predict \
 
 ## Findings and Visuals
 
-Take screenshots of your charts and provide them here with a discussion.
-In Markdown, display a figure by using:
-an exclamation mark immediately followed by square brackets containing a useful caption
-immediately followed by parentheses containing the relative path to your figure.
-Note: When you start typing the path with a dot (.) for "here, in this directory",
-the IDE may help complete the path.
+The trained penguin species classifier completed successfully and produced a reliable saved model artifact.
+The executed notebook and project log show the workflow ran end to end, and the model achieved a test accuracy of 1.000 on the held-out test set.
 
-In your custom project, follow this example, but
+Representative project outputs are:
 
-- your figures and narrative should reflect your work,
-- this `README.md` should include your commands, process, and visuals, and
-- `docs/index.md` should include your narrative.
+- the executed notebook: [notebooks/ml_06_serve_model_crews.executed.ipynb](notebooks/ml_06_serve_model_crews.executed.ipynb)
+- the saved model artifact: [artifacts](artifacts)
+- the project log: [project.log](project.log)
 
-Remove unnecessary instructional comments in your custom files.
-
-Update figures to present interesting results from your custom project:
-
-![Provide a Useful Caption](./docs/images/Figure_1.png)
-
-![Provide a Useful Caption](./docs/images/Figure_2.png)
+These results show that the serving workflow is functioning correctly and that the trained model can be reused for prediction requests without retraining.
 
 ## Project Documentation
 
