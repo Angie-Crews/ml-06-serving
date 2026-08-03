@@ -357,6 +357,12 @@ Representative project outputs are:
 
 These results show that the serving workflow is functioning correctly and that the trained model can be reused for prediction requests without retraining.
 
+Additional Phase 5 visuals were added to [notebooks/ml_06_serve_model_crews.ipynb](notebooks/ml_06_serve_model_crews.ipynb):
+
+- Confusion matrix on held-out test data (all classes predicted correctly in this run).
+- RandomForest feature importance chart (bill length and flipper length were strongest).
+- Species scatter plot (`bill_length_mm` vs `bill_depth_mm`) showing class separation patterns.
+
 ## Project Documentation
 
 Additional project instructions, terms, and notes:

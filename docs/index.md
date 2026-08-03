@@ -99,3 +99,9 @@ Include:
 - What kinds of real problems you could apply these skills to in the future
 
 Display at least one image or screenshot showing your work.
+
+Current project evidence includes visuals in [notebooks/ml_06_serve_model_crews.ipynb](../notebooks/ml_06_serve_model_crews.ipynb):
+
+- Confusion matrix for test predictions
+- Feature importance chart from the trained RandomForest model
+- Species scatter plot of penguin measurements
