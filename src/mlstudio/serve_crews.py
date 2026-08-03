@@ -55,7 +55,7 @@ from fastapi import FastAPI, HTTPException
 import joblib  # for serializing and deserializing the model
 from sklearn.ensemble import RandomForestClassifier
 
-__all__ = ["app", "predict_from_features", "predict"]
+__all__ = ["app", "health", "predict_from_features", "predict"]
 
 # === Section 2. CONFIGURE LOGGER ===
 
@@ -106,6 +106,18 @@ def load_model() -> RandomForestClassifier:
 # === Section 5. CREATE THE APP ===
 
 app = FastAPI(title="Penguin species classifier")
+
+
+@app.get("/health")
+def health() -> dict[str, Any]:
+    """Return a lightweight health payload for service checks."""
+    return {
+        "status": "ok",
+        "model_path": str(MODEL_PATH),
+        "model_loaded": MODEL is not None,
+        "model_exists": MODEL_PATH.exists(),
+    }
+
 
 # === Section 6. DEFINE THE PREDICT ENDPOINT ===
 
