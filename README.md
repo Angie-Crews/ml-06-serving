@@ -104,6 +104,28 @@ Verification used:
 - A successful `GET /health` response (status and model availability)
 - A successful `POST /predict` response (species prediction)
 
+## Phase 5 Apply: Skills to a New Problem
+
+For Phase 5, I applied the full workflow to my own crews version of the project and expanded the analysis evidence.
+
+What I applied:
+
+- Trained and saved a penguin species model using the crews workflow.
+- Served predictions with FastAPI and validated requests/responses.
+- Added a practical API enhancement (`GET /health`) while preserving `POST /predict` behavior.
+- Added and ran tests to verify serving behavior.
+
+Why this is a new applied problem:
+
+- I moved from only running an example to owning a complete train-serve-verify-document cycle.
+- I produced additional evaluation visuals to explain model behavior, not just final predictions.
+
+Phase 5 visual evidence (in the notebook):
+
+- Confusion matrix on held-out test data.
+- Feature importance chart from the trained RandomForest model.
+- Species scatter plot showing measurement-based class separation.
+
 ## Challenges
 
 Challenges are expected.

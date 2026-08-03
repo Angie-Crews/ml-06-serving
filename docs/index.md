@@ -50,55 +50,57 @@ How it was verified:
 
 ## Phase 5. Custom Project
 
-Describe your custom project and how you made your modeling decisions.
+Phase 5 applies the project skills to my own maintained crews workflow.
 
-Be specific about what changed from the example project.
+Compared with the base example, I implemented and verified a full train-serve-evaluate loop and documented outcomes with visuals.
 
 ### Basis and Data
 
-Describe the dataset, input, or example you started with.
+I used the penguins dataset from the example workflow.
 
-Include:
-
-- The original example dataset or input
-- The data source
-- Why you chose it, kept it, or changed it
-- Any important limitations or assumptions
+- Data source: seaborn `penguins` dataset.
+- Inputs: `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`.
+- Target: `species`.
+- Assumption: rows missing required fields were dropped before training.
 
 ### Example Model and Serving Approach
 
-Describe the model being served and how it is deployed.
+The model predicts penguin species from four numeric measurements.
 
-Include:
-
-- What the model predicts and what inputs it expects
-- How the model was trained and saved
-- How the API receives a request and returns a prediction
-- Where the model is deployed (local, Render, Hugging Face, or other)
+- Training: RandomForest classifier trained in the crews workflow.
+- Artifact: saved to `artifacts/model.joblib`.
+- Serving: FastAPI app accepts JSON input and returns a JSON prediction.
+- Deployment used for verification: local development server.
 
 ### Custom Application
 
-Describe your custom dataset, model, or API changes.
+Custom changes made:
 
-Include:
+- Added `GET /health` endpoint for service/model availability checks.
+- Preserved `POST /predict` behavior and schema.
+- Added tests for serving behavior.
+- Added notebook endpoint checks and model interpretation visuals.
 
-- What you changed from the example (dataset, model, endpoint, or inputs)
-- Why you made those changes
-- How you verified that your custom model or API works correctly
+Verification used:
+
+- Run server with `uv run fastapi dev src/mlstudio/serve_crews.py`.
+- Confirm successful `GET /health` response.
+- Confirm successful `POST /predict` response.
+- Run tests and confirm notebook visuals execute.
 
 ### Summary
 
-Summarize your custom project.
+This Phase 5 project demonstrates an end-to-end applied workflow: data preparation, model training, model serving, endpoint validation, and results communication.
 
-Include:
+Results and learning highlights:
 
-- How you implemented your custom model or API
-- What results you got
-- What you learned
-- How well you exercised the skills covered in this project
-- What kinds of real problems you could apply these skills to in the future
+- The model produced accurate test predictions in this run.
+- API behavior was validated for both health and prediction endpoints.
+- Visuals improved explainability and made outcomes easier to communicate.
 
-Display at least one image or screenshot showing your work.
+Practical relevance:
+
+- This mirrors real production tasks: maintain a model API, verify behavior after changes, and provide clear technical evidence.
 
 Current project evidence includes visuals in [notebooks/ml_06_serve_model_crews.ipynb](../notebooks/ml_06_serve_model_crews.ipynb):
 
