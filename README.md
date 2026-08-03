@@ -67,7 +67,7 @@ See [docs/your-files.md](docs/your-files.md) for more.
 
 Links:
 
-- [ml_06_case.ipynb](notebooks/ml_06_case.ipynb)
+- [ml_06_serve_model_crews.ipynb](notebooks/ml_06_serve_model_crews.ipynb)
 
 ## Working Files
 
@@ -125,7 +125,7 @@ open a machine terminal in your `Repos` folder:
 
 ```shell
 # Replace username with YOUR GitHub username.
-git clone https://github.com/username/ml-06-serving
+git clone https://github.com/Angie-Crews/ml-06-serving
 
 cd ml-06-serving
 code .
@@ -152,10 +152,10 @@ uvx pre-commit run --all-files
 uvx pre-commit run --all-files
 
 # run the example module to verify the environment (.venv/)
-uv run python -m mlstudio.app_case
+uv run python -m mlstudio.app_crews
 
 # TASK 1: train the example model and save it to artifacts/model.joblib.
-uv run python -m mlstudio.model_builder_case
+uv run python -m mlstudio.model_builder_crews
 
 # CUSTOM: After completing your custom project,
 # Add the command to
@@ -231,7 +231,7 @@ Run:
 
 ```shell
 # Task 2. Start the example server
-uv run fastapi dev src/mlstudio/serve_case.py
+uv run fastapi dev src/mlstudio/serve_crews.py
 ```
 
 Keep this terminal open.
